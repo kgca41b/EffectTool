@@ -1,13 +1,10 @@
 #pragma once
 #include "Engine_include.h"
 #include "Widgets.h"
-#include "FX_Particles.h"
-#include "FX_Particles.h"
-#include "FX_Particles.h"
 
 namespace KGCA41B
 {
-	class EffectWidgetScene : public KGCA41B::Scene
+	class CharacterWidgetScene : public KGCA41B::Scene
 	{
 	public:
 		string rt_id;

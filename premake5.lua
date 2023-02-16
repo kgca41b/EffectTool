@@ -27,11 +27,11 @@ project "EffectTool"
 
 	includedirs
 	{
-		"../KGCA41B_TeamProj/Engine/vendor/spdlog/include",
-		"../KGCA41B_TeamProj/Engine/src",
-		"../KGCA41B_TeamProj/Engine/src/Engine",
-		"../KGCA41B_TeamProj/Engine/src/ECS",
-		"../KGCA41B_TeamProj/Engine/src/Engine/SingletonClass",
+		"../Game-Engine/Engine/vendor/spdlog/include",
+		"../Game-Engine/Engine/src",
+		"../Game-Engine/Engine/src/Engine",
+		"../Game-Engine/Engine/src/ECS",
+		"../Game-Engine/Engine/src/Engine/SingletonClass",
 		"../SDK/DirectXTK/include",
 		"../SDK/FBXSDK/include",
 		"../SDK/FMOD/include",
@@ -75,11 +75,6 @@ project "EffectTool"
 		prebuildcommands
 		{
 			"copy \"..\\..\\output\\bin\\Debug-windows-x86_64\\Engine\\*.dll\" \"..\\..\\output\\bin\\Debug-windows-x86_64\\EffectTool\\*.dll\""
-		}
-
-		postbuildcommands
-		{
-			"copy \"..\\..\\output\\bin\\Debug-windows-x86_64\\EffectTool\\*.cso\" \"..\\..\\Contents\\Shader\\*.cso\""
 		}
 
 	filter "configurations:Debug"

@@ -1,10 +1,10 @@
-#include "EffectTool.h"
+#include "CharacterTool.h"
 #include "ComponentSystem.h"
 #include "SceneMgr.h"
 
 using namespace KGCA41B;
 
-void EffectTool::OnInit()
+void CharacterTool::OnInit()
 {
 	GUI->AddWidget("MainMenu", &window_);
 	DATA->Init("D:/Data");
@@ -29,38 +29,36 @@ void EffectTool::OnInit()
 	debug_camera_.speed = 100;
 	debug_camera_.tag = "Player";
 
-	reg_effect_tool_.emplace<Camera>(player_, debug_camera_);
+	reg_scene.emplace<Camera>(player_, debug_camera_);
 
 	debug_input_.tag = "Player";
-	reg_effect_tool_.emplace<InputMapping>(player_, debug_input_);
+	reg_scene.emplace<InputMapping>(player_, debug_input_);
 
-	sys_camera_.TargetTag(reg_effect_tool_, "Player");
-	sys_camera_.OnCreate(reg_effect_tool_);
-	sys_input_.OnCreate(reg_effect_tool_);
-	sys_render_.OnCreate(reg_effect_tool_);
+	sys_camera_.TargetTag(reg_scene, "Player");
+	sys_camera_.OnCreate(reg_scene);
+	sys_input_.OnCreate(reg_scene);
+	sys_render_.OnCreate(reg_scene);
 
-	uv_sprite_.OnInit(reg_effect_tool_, AABB<3>(), {});
-	tex_sprite_.OnInit(reg_effect_tool_, AABB<3>(), {});
+	character_actor.OnInit(reg_scene, AABB<3>({ 10, 10 }, { 10, 10 }));
 }
 
-void EffectTool::OnUpdate()
+void CharacterTool::OnUpdate()
 {
-	sys_input_.OnUpdate(reg_effect_tool_);
-	sys_camera_.OnUpdate(reg_effect_tool_);
+	sys_input_.OnUpdate(reg_scene);
+	sys_camera_.OnUpdate(reg_scene);
 
 	widget_scene_.OnUpdate();
-	uv_sprite_.OnUpdate(reg_effect_tool_);
-	tex_sprite_.OnUpdate(reg_effect_tool_);
+	character_actor.OnUpdate(reg_scene);
 }
 
-void EffectTool::OnRender()
+void CharacterTool::OnRender()
 {
 	widget_scene_.OnRender();
 	GUI->RenderWidgets();
-	sys_render_.OnUpdate(reg_effect_tool_);
+	sys_render_.OnUpdate(reg_scene);
 }
 
-void EffectTool::OnRelease()
+void CharacterTool::OnRelease()
 {
 
 }
